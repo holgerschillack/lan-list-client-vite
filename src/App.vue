@@ -115,7 +115,8 @@
 </template>
 
 <script>
-// import Vue from "vue";
+import {useToast} from "vue-toast-notification";
+const $toast = useToast();
 
 const API_URL = "http://192.168.178.65:4100/api/devices";
 const REFRESH_URL = "http://192.168.178.65:4100/api/refresh";
@@ -144,7 +145,7 @@ export default {
         .then((response) => response.json())
         .then((res) => {
           if (refresh)
-            Vue.$toast.open({
+            $toast.open({
               message: "Daten empfangen",
               position: "top-right",
               duration: 2000,
@@ -155,7 +156,7 @@ export default {
           this.filterList();
         })
         .catch((err) => {
-          Vue.$toast.open({
+          $toast.open({
             message: "API Fehler :(",
             position: "top-right",
             type: "error",
